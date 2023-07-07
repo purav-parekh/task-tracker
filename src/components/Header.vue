@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>{{title}}</h1>
-        <Button @btn-click="$emit('toggle-add-task')" :color="showAddTask ? 'red' : 'green'" :title="showAddTask ? 'Close' : 'Add Task'"/>
+        <Button v-show="homePage" @btn-click="$emit('toggle-add-task')" :color="showAddTask ? 'red' : 'green'" :title="showAddTask ? 'Close' : 'Add Task'"/>
     </header>
 </template>
 
@@ -15,6 +15,12 @@ import Button from "./Button.vue"
         },
         components: {
             Button
+        },
+        computed: {
+            homePage() {
+                if(this.$route.path === "/") return true
+                else return false
+            }
         },
         emits:['toggle-add-task']
     }
