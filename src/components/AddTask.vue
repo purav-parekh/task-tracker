@@ -5,12 +5,21 @@
         <input type="text" name="text" v-model="text" placeholder="Add Task" />
       </div>
       <div class="form-control">
-        <label>Day & Time</label>
+        <label>Date</label>
         <input
-        v-model="day"
-          type="text"
-          name="day"
-          placeholder="Add Day & Time"
+          v-model="date"
+          type="date"
+          name="date"
+          placeholder="Add Date"
+        />
+      </div>
+      <div class="form-control">
+        <label>Time</label>
+        <input
+          v-model="time"
+          type="time"
+          name="time"
+          placeholder="Add Time"
         />
       </div>
       <div class="form-control form-control-check">
@@ -28,7 +37,8 @@
     data() {
         return {
             text: '',
-            day:'',
+            date:'',
+            time: '',
             reminder:false
         }
     },
@@ -40,10 +50,27 @@
                 // return
             }
 
+            function formatDate(dateString) {
+              const date = new Date(dateString);
+              const options = { month: 'long', day: 'numeric' };
+              const formattedDate = date.toLocaleDateString('en-US', options);
+              return formattedDate;
+            }
+
+            function convertTo12Hour(time24) {
+              const time12 = new Date(`1970-01-01T${time24}:00`);
+              return time12.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+            }
+
+            
+            
+            const formattedDate = formatDate(this.date)
+            const formattedTime = convertTo12Hour(this.time);
+
             const newTask = {
                 // id: Math.floor(Math.random() *100000),
                 text: this.text,
-                day: this.day,
+                day: formattedDate + ' at ' + formattedTime,
                 reminder: this.reminder
             }
 

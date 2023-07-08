@@ -11,7 +11,6 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
 
-
 export default {
   name: 'App',
   components: {
@@ -36,7 +35,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
 
 * {
   box-sizing: border-box;
